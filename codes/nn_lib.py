@@ -215,8 +215,6 @@ class CNNLIB():
 
         encoder.add(keras.layers.Convolution2D(nb_kernels, 3,3,activation='relu',border_mode='same'))#use nb_kernels kernels instead
         encoder.add(keras.layers.core.Flatten())
-        #20x30 * 1 = 600 * 1
-        #10 * 15 * 6 = 150 * 6 = 900
         if dropout: encoder.add(keras.layers.core.Dropout(0.1))
 
         encoder.add(keras.layers.Dense(nb_bottleneck, activation='relu'))
