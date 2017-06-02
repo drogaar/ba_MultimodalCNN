@@ -19,7 +19,7 @@ data_y = nn_lib.format_labels(data_y, label2index, nb_classes)
 
 print("training network...")
 output = []
-for b in reversed(range(22)):#reversed(range(13)):#35:2b+2: 65/5=13, 64/4=16, 66/3=22
+for b in reversed(range(22)):
     nb_representation = 3*b + 3
     nb_kernels = 12
 
@@ -30,9 +30,6 @@ for b in reversed(range(22)):#reversed(range(13)):#35:2b+2: 65/5=13, 64/4=16, 66
 
         nn_lib.train_net(classifier_ordinary, data_x[train_set], data_y[train_set], data_x[val_set], data_y[val_set],
                             "img2class_k"+str(nb_kernels) + "b" + str(nb_representation) + "i" + str(i), epochs=20, path="../neural_models/by_representation_word/")
-        #15 epochs estimate earlystop=[keras.callbacks.EarlyStopping(monitor='val_acc', min_delta=0.005, patience=2, mode='auto')]
-        #20
-        #23~?
 
         #score metrics : [loss, accuracy]
         score = classifier_ordinary.evaluate(data_x[val_set],data_y[val_set], batch_size=25)

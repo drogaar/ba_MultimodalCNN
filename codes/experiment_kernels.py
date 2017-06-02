@@ -20,7 +20,7 @@ data_y = nn_lib.format_labels(data_y, label2index, nb_classes)
 print("training network...")
 output = []
 history = []
-for k in reversed(range(10)):#range(10):
+for k in reversed(range(10)):
     nb_representation = 7
     nb_kernels = 2*k + 2
 
@@ -31,10 +31,6 @@ for k in reversed(range(10)):#range(10):
         hist_it = nn_lib.train_net(classifier_ordinary, data_x[train_set], data_y[train_set], data_x[val_set], data_y[val_set],
                             "img2class_k"+str(nb_kernels) + "_b" + str(nb_representation) + "_i" + str(i), epochs=40, path="../neural_models/by_kernel/may27/", 
                             earlystop=[keras.callbacks.EarlyStopping(monitor='val_acc', min_delta=0.005, patience=2, mode='auto')])
-        #14 epochs, fixed used earlier with nn_lib.train_net
-        #new approach: 25 epochs? patience 3 
-        #also explain effect earlystopping:
-        # higher accuracy for small models than the higher accurcy for complex models.
 
         #score metrics : [loss, accuracy]
         score = classifier_ordinary.evaluate(data_x[val_set],data_y[val_set], batch_size=25)
